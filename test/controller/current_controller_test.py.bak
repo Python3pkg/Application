@@ -96,12 +96,12 @@ class CurrentControllerTest(ControllerTest):
         self.controller.current_bank.append(pedalboard)
 
         total_pedalboards = len(self.controller.current_bank.pedalboards)
-        for id_pedalboard in reversed(list(range(total_pedalboards))):
+        for id_pedalboard in reversed(range(total_pedalboards)):
             self.controller.to_before_pedalboard()
             self.assertEqual(id_pedalboard, self.controller.pedalboard_number)
             observer.on_current_pedalboard_changed.assert_called_with(self.controller.current_pedalboard, None)
 
-        for id_pedalboard in reversed(list(range(total_pedalboards))):
+        for id_pedalboard in reversed(range(total_pedalboards)):
             self.controller.to_before_pedalboard(self.TOKEN)
             self.assertEqual(id_pedalboard, self.controller.pedalboard_number)
             observer.on_current_pedalboard_changed.assert_called_with(self.controller.current_pedalboard, self.TOKEN)
